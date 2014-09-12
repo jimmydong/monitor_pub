@@ -1,0 +1,77 @@
+<?
+define('THIS_PAGE_NAME', 'config');
+include 'init.php';
+Debug::start();
+
+$step=getReqNoHtml('step');
+$c_id=getReqInt('c_id');
+$d_order=getReqInt('d_order');
+$d_domain=getReqNoHtml('d_domain');
+$d_filename=getReqNoHtml('d_filename');
+$d_param=getReqNoHtml('d_param');
+$d_5m=getReqInt('d_5m');
+$d_day=getReqInt('d_day');
+
+$q = DB::getInstance('default', true, __FILE__);
+$channel_info=$q->fetchAll("SELECT * FROM channel");
+foreach($channel_info as $channel){
+$option_channel.="<option value={$channel[c_id]}>{$channel[c_name]}</option>";
+}
+show_head();
+print <<< end_of_print
+<div class=box>
+<form name=form1 id=form1 method=post action=counter_config.php>
+<input type=hidden name=step value='add'>
+<select name=c_id>{$option_channel}</select>
+order:<input type=text size=20 name=d_order>
+domain:<input type=text size=20 name=d_domain>
+filename:<input type=text size=30 name=d_filename>
+param:<input type=text size=20 name=d_param>
+5m:<input type=text size=3 name=d_5m>
+day:<input type=text size=3 name=d_day>
+<input type=submit value=INSERT>
+</form>
+</div>
+end_of_print;
+
+if($step=='add'){
+$q->query("INSERT INTO channel_define SET c_id='$c_id', d_order='$d_order', d_domain='$d_domain', d_filename='$d_filename', d_param='$d_param', d_5m='$d_5m', d_day='$d_day'");
+echo "<hr>INSERT OK!<hr>\n";
+}
+
+$define_info=$q->fetchAll("SELECT channel_define.*,channel.c_name FROM channel_define LEFT JOIN channel ON channel_define.c_id=channel.c_id ORDER BY d_order");
+print <<< end_of_print
+<table cellpadding="5" cellspacing="1"  border="1">
+<tr bgcolor='#CCCCCC'>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+end_of_print;
+foreach($define_info as $define){
+print <<< end_of_print
+<tr>
+<td>{$define[d_id]}</td>
+<td>{$define[d_order]}</td>
+<td>{$define[c_name]}</td>
+<td>{$define[d_domain]}</td>
+<td>{$define[d_filename]}</td>
+<td>{$define[d_param]}</td>
+<td>{$define[d_5m]}</td>
+<td>{$define[d_day]}</td>
+<td>{$define[delfalg]}</td>
+<td>up down</td>
+<td>remark</td>
+</tr>
+end_of_print;
+}
+
+?>

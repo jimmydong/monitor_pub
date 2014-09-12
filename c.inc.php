@@ -1,0 +1,41 @@
+<?
+/**
+ * generate by counter.geninc.php
+ * 2009-07-21 13:07:18
+ */
+$reglist['4']['c_id']='3';
+$reglist['4']['reg']='^http://pic\\.yoka\\.com/picturen/.*\\?[^?]*';
+$reglist['3']['c_id']='3';
+$reglist['3']['reg']='^http://www\\.yoka\\.com/[^/]*/picturen/.*\\?[^?]*';
+$reglist['1']['c_id']='3';
+$reglist['1']['reg']='^http://pic\\.yoka\\.com/[^?]*\\?[^?]*';
+$channel['1']['c_id']='1';
+$channel['1']['c_name']='space';
+$channel['1']['c_parentid']='0';
+$channel['1']['c_5m']='0';
+$channel['1']['c_day']='0';
+$channel['1']['delflag']='0';
+$channel['2']['c_id']='2';
+$channel['2']['c_name']='BBS';
+$channel['2']['c_parentid']='0';
+$channel['2']['c_5m']='0';
+$channel['2']['c_day']='0';
+$channel['2']['delflag']='0';
+$channel['3']['c_id']='3';
+$channel['3']['c_name']='pic';
+$channel['3']['c_parentid']='0';
+$channel['3']['c_5m']='0';
+$channel['3']['c_day']='0';
+$channel['3']['delflag']='0';
+$channel['4']['c_id']='4';
+$channel['4']['c_name']='product';
+$channel['4']['c_parentid']='0';
+$channel['4']['c_5m']='0';
+$channel['4']['c_day']='0';
+$channel['4']['delflag']='0';
+$channel['5']['c_id']='5';
+$channel['5']['c_name']='other';
+$channel['5']['c_parentid']='0';
+$channel['5']['c_5m']='0';
+$channel['5']['c_day']='0';
+$channel['5']['delflag']='0';

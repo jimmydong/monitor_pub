@@ -1,0 +1,131 @@
+10.0.0.20 port	6927 Databases:
+baida 
+
+10.0.0.21 port	3306 Databases:
+ads_statistics
+brandcenter
+mimi
+userlog
+wechat
+yoka
+yoka_sys_notice 
+
+10.0.0.22 port	6914 Databases:
+biotherm
+kaixin_shoushen
+product_share
+question_answer
+shopping
+site_guide
+special_activity
+star
+taobao_shoushen
+zhuanti_aimu 
+
+10.0.0.22 port	6915 Databases:
+blog_content
+yoka_article 
+
+10.0.0.23 port	6924 Databases:
+audit 
+
+10.0.0.23 port	6917 Databases:
+astro
+clubs
+idea
+lucky
+media
+public_vote
+seofetch
+wealth 
+
+10.0.0.24 port	6913 Databases:
+gifts
+newtry
+photo
+star_review
+try
+vote
+zhuanqu 
+
+10.0.0.24 port	6919 Databases:
+baidu_audit
+collectible_card_game
+coupon
+flower_game
+game_center
+street
+treasure
+xingkong 
+
+10.0.0.25 port	6912 Databases:
+action
+adminspace
+cms_pic
+message
+relation
+tu
+visitor 
+
+10.0.0.26 port	6918 Databases:
+ad 
+
+10.0.0.27 port	6924 Databases:
+uspace_uchome 
+
+10.0.0.28 port	6916 Databases:
+discuz 
+
+10.0.0.29 port	6926 Databases:
+_watch_20110603
+mingpin
+watch
+watch_data 
+
+10.0.0.29 port	6932 Databases:
+oms 
+
+10.0.0.30 port	6925 Databases:
+autobbs
+nivea
+sale_zhuanti 
+
+10.0.0.90  Databases:
+ 
+
+10.0.0.90  Databases:
+ 
+
+10.0.10.20 port	6928 Databases:
+market_trace 
+
+10.0.10.21 port	6934 Databases:
+brand_news
+by
+jiankang
+show
+uspace_job
+uspace_shichang
+utask 
+
+10.0.10.23 port	6921 Databases:
+at
+bao
+mosaic
+yoka_at
+yokaconnect 
+
+10.0.10.24 port	6933 Databases:
+city
+empirecms_jo
+vgrade 
+
+10.0.10.25 port	6935 Databases:
+uspace_ucenter
+yokacms_theme 
+
+10.0.1.21 port	6926 Databases:
+paycenter
+ymall40
+ymall_weixin 
+

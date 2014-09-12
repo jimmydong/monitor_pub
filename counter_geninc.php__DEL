@@ -1,0 +1,72 @@
+<?
+define('THIS_PAGE_NAME', 'config');
+include 'init.php';
+Debug::start();
+
+$q = DB::getInstance('default', true, __FILE__);
+$channel_info=$q->fetchAll("SELECT * FROM channel_define WHERE delflag=0 ORDER BY d_order DESC");
+foreach($channel_info as $record){
+if($record[d_domain]=='' || $record[d_domain]=='.*')$tmpreg='^http://[^/]*';
+else $tmpreg='^http://'.str_replace('|','\|',$record[d_domain]);
+if($record[d_filename]=='' || $record[d_filename]=='.*')$tmpreg.='/[^?]*';
+else {if(substr($record[d_filename],0,1)!='/')$record[d_filanem]='/'.$record[d_filename];$tmpreg.=str_replace('|','\|',$record[d_filename]);}
+if($record[d_param]=='' || $record[d_param]=='.*')$tmpreg.='\?[^?]*';
+else {if(substr($record[d_param],0,1)=='?')$record[d_param]=substr($record[d_param],1);if($substr($recrod[d_param])=='\?')$record[d_param]=substr($record[d_param],2);$tmpreg.='\?'.str_replace('|','\|',$record[d_param]);}
+$reglist[$record[d_id]]=array('c_id'=>$record[c_id],'reg'=>$tmpreg);
+//var_dump($record);
+}
+$now=date("Y-m-d H:i:s");
+$content = <<< end_of_string
+<?
+/**
+ * generate by counter.geninc.php
+ * $now
+ */
+
+end_of_string;
+
+$content.=value2file($reglist,'reglist');
+
+$channel_raw=$q->fetchAll("SELECT * FROM channel WHERE delflag=0");
+foreach($channel_raw as $record){
+$channel[$record[c_id]]=$record;
+}
+$content.=value2file($channel,'channel');
+
+echo $content;
+file_put_contents('c.inc.php',$content);
+
+/*-------------------------------- function -------------------------------*/
+function value2file($the_value,$value_name)
+{
+    $content="";
+    if(!is_array($the_value)){
+        return "\${$value_name}='$the_value';\n";
+    }
+    foreach($the_value as $key => $value){
+        if(is_array($value)){
+            $valuelist=value2file_sub($value,$key);
+            foreach($valuelist as $subvalue){
+                $content.="\$$value_name".$subvalue;
+            }
+        }else{
+            $content.="\${$value_name}['{$key}']='".addslashes($value)."';\n";
+        }
+    }
+    return $content;
+}
+function value2file_sub($value,$key){
+    $result=array();
+    if(is_array($value)){
+        foreach ($value as $subkey => $subvalue){
+            $tmp_result=value2file_sub($subvalue, $subkey);
+            foreach($tmp_result as $substring){
+                $result[]="['$key']".$substring;
+            }
+        }
+    }else{
+        $result[]="['$key']='".addslashes($value)."';\n";
+    }
+    return $result;
+}
+?>
